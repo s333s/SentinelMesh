@@ -101,7 +101,7 @@ SentinelMesh is a prototype for demonstration and education. Its policies and ri
 
 - **Live demo:** https://sentinelmesh-silk.vercel.app
 - **GitHub:** https://github.com/s333s/SentinelMesh
-- **Youtube vedio:** https://youtu.be/Mzpf7zLGMAk?si=kTX-dhW33czuTfmp
+- **Youtube vedio:** [Youtube Vedio](https://youtu.be/Mzpf7zLGMAk?si=inl_6v6XcpxIAoHq)
 ---
 
 <p align="center"><strong>Inspect first. Enforce policy. Then execute.</strong></p>

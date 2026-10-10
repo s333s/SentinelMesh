@@ -1,122 +1,107 @@
-[README.md](https://github.com/user-attachments/files/33280821/README.md)
-# SentinelMesh
+[SentinelMesh-README.md](https://github.com/user-attachments/files/33280874/SentinelMesh-README.md)
+<p align="center">
+  <img src="public/sentinelmesh-logo.svg" alt="SentinelMesh logo" width="112" />
+</p>
 
-### Zero-Trust Security Gateway for AI Agents
+<h1 align="center">SentinelMesh</h1>
 
-**Let AI act. But never let AI act without a security boundary.**
+<p align="center"><strong>Zero-trust security gateway for AI agents</strong></p>
+<p align="center">Let AI act. But never let AI act without a security boundary.</p>
 
-[Live Demo](https://sentinelmesh-silk.vercel.app) · [GitHub Repository](https://github.com/s333s/SentinelMesh)
+<p align="center">
+  <a href="https://sentinelmesh-silk.vercel.app">Live Demo</a> ·
+  <a href="https://github.com/s333s/SentinelMesh">Source Code</a>
+</p>
 
-## Overview
+## What is SentinelMesh?
 
-AI agents can read emails, interpret documents, and propose actions for connected devices. That creates a security risk: malicious or misleading content could persuade an agent to unlock a door, disable an alarm, or perform another dangerous action.
+AI agents can read emails, interpret documents, and propose actions through tools. If untrusted content manipulates an agent, those actions could affect real-world systems.
 
-**SentinelMesh adds a zero-trust security gateway between an AI agent and the actions it can take.** Every proposed tool call is evaluated before execution. A risk analyzer identifies potential phishing, impersonation, social engineering, and prompt-injection signals, while a deterministic policy engine decides whether the action is allowed, denied, blocked, or sent for human approval.
+**SentinelMesh adds a security gateway between an AI agent and the actions it can take.** It analyzes incoming content, inspects proposed tool calls, scores risk, and applies security policies before an action can execute.
 
-The current project demonstrates this workflow with a **simulated smart-home environment**. It does not control real physical devices.
+> **The AI is not trusted just because it is the AI.**
 
-## How It Works
+## How it works
 
 ```text
-Untrusted Message
+Untrusted Content
        ↓
-   AI Agent (Atlas)
+    AI Agent
        ↓
- SentinelMesh Gateway
+  SentinelMesh
        ↓
-Risk Analysis + Policy Checks
+ Risk Analysis
+       ↓
+ Security Policies
        ↓
 Allow / Deny / Block / Human Approval
        ↓
-Simulated Smart-Home Device
+ Simulated Devices
 ```
 
-The AI agent is not the final authority on whether an action is safe. Risk analysis can identify suspicious content, but the policy engine enforces the security rules. The language-model analysis can add risk signals; it cannot lower the deterministic baseline risk.
+The language model helps interpret messages and propose actions. A separate deterministic policy engine makes the final enforcement decision, reducing the chance that a persuasive or malicious message can bypass the security rules.
 
-## Key Features
+## Key features
 
-- **Tool-call interception:** check proposed actions before they reach simulated devices.
-- **Risk analysis:** assess potential phishing, impersonation, social engineering, urgency manipulation, and prompt injection.
-- **Policy-based enforcement:** apply security rules to sensitive actions such as unlocking doors or disabling alarms.
-- **Human approval:** route sensitive actions for review when policy requires it.
-- **Attack Lab:** explore scenarios involving phishing, fake administrators, hidden document instructions, fake emergency overrides, and unsafe commands.
-- **Safe-action simulation:** compare suspicious requests with legitimate device actions.
-- **Security dashboard and event log:** inspect decisions, risk scores, policy outcomes, and device state.
+- **AI tool-call interception** before actions reach devices
+- **Risk analysis** for suspicious urgency, impersonation, social engineering, and possible prompt injection
+- **Policy-based enforcement** with allow, deny, block, and approval outcomes
+- **Human approval queue** for sensitive actions
+- **Attack Lab** with realistic simulated threat scenarios
+- **Security event log** for reviewing decisions and risk signals
+- **Smart-home simulation** for a front door, garage, alarm, camera, lights, and thermostat
+- **Dashboard** for inspecting device state, policies, approvals, and recent activity
+- **Local fallback analysis** when AI analysis is unavailable
 
-## Example Attack Scenarios
+## Attack Lab scenarios
 
-| Scenario | Risk being demonstrated |
-| --- | --- |
-| Phishing message | A spoofed delivery or security message tries to trigger a device action. |
-| Fake administrator | An impersonated IT request asks to disable a security camera. |
-| Hidden prompt injection | A document contains instructions intended to manipulate the agent. |
-| Fake emergency override | A message claims urgent authority to bypass safeguards. |
-| Unsafe device command | A request attempts to change a device beyond configured limits. |
+The demo includes simulated examples such as phishing messages requesting door access, fake administrator instructions, hidden instructions inside documents, fabricated emergency overrides, and unsafe device commands.
 
-## Technology Stack
+## Technology
 
-- **Next.js 16** and **React 19**
-- **TypeScript**
-- **Tailwind CSS 4**
-- **AI SDK** with the `openai/gpt-5.4-mini` model through the AI Gateway
-- **Zod** for structured output validation
-- **Recharts** for dashboard visualizations
-- **Lucide React** and **shadcn/ui** components
-- **pnpm** for package management
-- **Vercel** for the live demo
+- Next.js and React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui and Lucide icons
+- Vercel AI SDK
+- OpenAI GPT-5.4-mini through the configured model provider
+- Zod for structured output validation
 
-## Run Locally
+## Run locally
 
-### Prerequisites
+### Requirements
 
-- Node.js 20.9 or newer
+- Node.js compatible with the installed Next.js version
 - pnpm
-- An AI Gateway API key if you want to run the language-model-powered analysis locally
 
-### Install and start
+### Setup
 
 ```bash
 git clone https://github.com/s333s/SentinelMesh.git
 cd SentinelMesh
 pnpm install
-```
-
-Create a `.env.local` file in the project root and add your AI Gateway key if required by your local setup:
-
-```env
-AI_GATEWAY_API_KEY=your_api_key_here
-```
-
-Keep API keys private. Do not commit `.env.local` or publish secrets. Then start the development server:
-
-```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-Other available scripts:
+For AI-assisted analysis, configure the credentials required by your selected model provider and deployment environment. If AI analysis is unavailable, the application can use its deterministic local analysis path.
 
-```bash
-pnpm build
-pnpm start
-```
+## Live demo
 
-`pnpm start` runs the production server after you have built the application with `pnpm build`.
+Try the deployed application: **[sentinelmesh-silk.vercel.app](https://sentinelmesh-silk.vercel.app)**
 
-## Demo Safety Note
+The public demo uses a **simulated smart-home environment**. It does not directly control real locks, alarms, cameras, or other physical devices.
 
-SentinelMesh is a prototype and demonstration of an AI security gateway. The smart-home devices shown in the interface are simulated. Do not use this prototype as the sole security control for a real building, alarm, lock, or other safety-critical system. A production deployment would require additional testing, hardened identity and authorization, secure integrations, monitoring, and independent security review.
+## Security note
 
-## Project Links
+SentinelMesh is a prototype for demonstration and education. Its policies and risk analysis are not a substitute for a professionally tested security system. Do not connect this prototype to real physical devices without a thorough security review.
+
+## Project links
 
 - **Live demo:** https://sentinelmesh-silk.vercel.app
-- **Source code:** https://github.com/s333s/SentinelMesh
-- **GitHub profile:** https://github.com/s333s
+- **GitHub:** https://github.com/s333s/SentinelMesh
 - **Youtube vedio:** https://youtu.be/Mzpf7zLGMAk?si=kTX-dhW33czuTfmp
+---
 
-## Core Principle
-
-> The AI is not trusted just because it is the AI.
-
-SentinelMesh checks actions before execution—because autonomous systems need boundaries, not blind trust.
+<p align="center"><strong>Inspect first. Enforce policy. Then execute.</strong></p>

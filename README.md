@@ -113,6 +113,7 @@ SentinelMesh is a prototype and demonstration of an AI security gateway. The sma
 - **Live demo:** https://sentinelmesh-silk.vercel.app
 - **Source code:** https://github.com/s333s/SentinelMesh
 - **GitHub profile:** https://github.com/s333s
+- **Youtube vedio:** https://youtu.be/Mzpf7zLGMAk?si=kTX-dhW33czuTfmp
 
 ## Core Principle
 

@@ -1,6 +1,6 @@
 [SentinelMesh-README.md](https://github.com/user-attachments/files/33280874/SentinelMesh-README.md)
 <p align="center">
-  <img src="public/SentinelMesh.jpg" alt="SentinelMesh logo" width="112" />
+  <img src="public/SentinelMesh.jpg" alt="SentinelMesh logo" width="1080" />
 </p>
 
 <h1 align="center">SentinelMesh</h1>
